@@ -385,56 +385,50 @@ messaging.setBackgroundMessageHandler(function(payload) {
 
 ### Click Add Project 
 
-``` 
 ![image](https://github.com/sajjadlaghari/Push-Notifcation-Laravel/assets/68752819/7bce5e68-d286-497e-a579-4d93ec350d11)
 
-```
 
 ### Enter Project Name
 
-``` 
+
 ![image](https://github.com/sajjadlaghari/Push-Notifcation-Laravel/assets/68752819/2cddc0eb-7d14-4b4b-80d4-9f515869f576)
 
 
-```
 
 ### Select Account 
 
-```
+
 ![image](https://github.com/sajjadlaghari/Push-Notifcation-Laravel/assets/68752819/28494c3a-46b1-493e-817b-368e99d803d7)
 
-```
+
 
 ### Select Web
 
-```
+
 ![image](https://github.com/sajjadlaghari/Push-Notifcation-Laravel/assets/68752819/b275dc1d-1918-4386-b3fb-746f3116d111)
 
 
-```
 
 ### Project name and Register 
 
-``` 
+
 ![image](https://github.com/sajjadlaghari/Push-Notifcation-Laravel/assets/68752819/3c4cdd65-a6f5-4434-870d-4ac728badb8a)
 
-```
+
 
 ### You will get Code Like Belew
 
-```
+
 ![Untitled](https://github.com/sajjadlaghari/Push-Notifcation-Laravel/assets/68752819/75b9ceae-0205-4395-89ba-e4487e3161aa)
 
-```
 
 
 ### Replace Below code in Home.blade php file and in public firebase-messaging.js with Above Screenshoot code
  
-```
+
 ![image](https://github.com/sajjadlaghari/Push-Notifcation-Laravel/assets/68752819/2dc6b6dc-6865-4afa-8955-caec5c93dfb9)
 
 
-```
 
 
 
