@@ -146,42 +146,26 @@ Route::post('/send-notification', [App\Http\Controllers\HomeController::class, '
 <?php
 class HomeController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
+  
     public function __construct()
     {
         $this->middleware('auth');
     }
   
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
+
     public function index()
     {
         return view('home');
     }
   
-    /** 
-     * Write code on Method
-     *
-     * @return response()
-     */
+  
     public function saveToken(Request $request)
     {
         auth()->user()->update(['device_token'=>$request->token]);
         return response()->json(['token saved successfully.']);
     }
   
-    /**
-     * Write code on Method
-     *
-     * @return response()
-     */
+    
     public function sendNotification(Request $request)
     {
         $firebaseToken = User::whereNotNull('device_token')->pluck('device_token')->all();
