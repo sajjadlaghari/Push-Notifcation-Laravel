@@ -389,7 +389,6 @@ messaging.setBackgroundMessageHandler(function(payload) {
 
 ## Run Server
 
-``` 
-php artisan serve
-```
+``` php artisan serve  ```
+
 
