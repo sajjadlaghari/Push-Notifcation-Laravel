@@ -143,13 +143,6 @@ Route::post('/send-notification', [App\Http\Controllers\HomeController::class, '
 ### Replace Home app/Http/Controllers/HomeController.php Controller with Below Code
 
 ```
-<?php
-  
-namespace App\Http\Controllers;
-  
-use Illuminate\Http\Request;
-use App\Models\User;
-  
 class HomeController extends Controller
 {
     /**
