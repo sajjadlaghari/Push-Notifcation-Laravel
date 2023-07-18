@@ -10,13 +10,14 @@ Initialize the Firebase app in the service worker by passing in the messagingSen
 * New configuration for app@pulseservice.com
 */
 firebase.initializeApp({
-    // apiKey: "AIzaSyCAnfSQruNczdykNeSeWeRJ6vbjAOQpN-o",
-    // authDomain: "test1-6124a.firebaseapp.com",
-    // projectId: "test1-6124a",
-    // storageBucket: "test1-6124a.appspot.com",
-    // messagingSenderId: "917827085066",
-    // appId: "1:917827085066:web:5178e651df9dadb649d0f3",
-    // measurementId: "G-9XNLLWXZP6"
+        apiKey: "XXXX",
+        authDomain: "XXXX.firebaseapp.com",
+        databaseURL: "https://XXXX.firebaseio.com",
+        projectId: "XXXX",
+        storageBucket: "XXXX",
+        messagingSenderId: "XXXX",
+        appId: "XXXX",
+        measurementId: "XXX"
     });
   
 /*

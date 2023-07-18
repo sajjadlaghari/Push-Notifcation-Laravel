@@ -37,20 +37,21 @@
 </div>
   
 <script src="https://www.gstatic.com/firebasejs/7.23.0/firebase.js"></script>
-{{-- <script
+<script
   src="https://code.jquery.com/jquery-3.7.0.js"
   integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM="
-  crossorigin="anonymous"></script> --}}
+  crossorigin="anonymous"></script>
 <script>
   
     var firebaseConfig = {
-//         apiKey: "AIzaSyCAnfSQruNczdykNeSeWeRJ6vbjAOQpN-o",
-//   authDomain: "test1-6124a.firebaseapp.com",
-//   projectId: "test1-6124a",
-//   storageBucket: "test1-6124a.appspot.com",
-//   messagingSenderId: "917827085066",
-//   appId: "1:917827085066:web:5178e651df9dadb649d0f3",
-//   measurementId: "G-9XNLLWXZP6"
+        apiKey: "XXXX",
+        authDomain: "XXXX.firebaseapp.com",
+        databaseURL: "https://XXXX.firebaseio.com",
+        projectId: "XXXX",
+        storageBucket: "XXXX",
+        messagingSenderId: "XXXX",
+        appId: "XXXX",
+        measurementId: "XXX"
     };
       
     firebase.initializeApp(firebaseConfig);
