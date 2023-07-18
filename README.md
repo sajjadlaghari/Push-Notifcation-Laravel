@@ -133,3 +133,263 @@ class User extends Authenticatable
 ```
 
 
+### Add Route route/web.php
+
+``` Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::post('/save-token', [App\Http\Controllers\HomeController::class, 'saveToken'])->name('save-token');
+Route::post('/send-notification', [App\Http\Controllers\HomeController::class, 'sendNotification'])->name('send.notification'); ```
+
+
+### Replace Home app/Http/Controllers/HomeController.php Controller with Below Code
+
+```
+<?php
+  
+namespace App\Http\Controllers;
+  
+use Illuminate\Http\Request;
+use App\Models\User;
+  
+class HomeController extends Controller
+{
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+  
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function index()
+    {
+        return view('home');
+    }
+  
+    /** 
+     * Write code on Method
+     *
+     * @return response()
+     */
+    public function saveToken(Request $request)
+    {
+        auth()->user()->update(['device_token'=>$request->token]);
+        return response()->json(['token saved successfully.']);
+    }
+  
+    /**
+     * Write code on Method
+     *
+     * @return response()
+     */
+    public function sendNotification(Request $request)
+    {
+        $firebaseToken = User::whereNotNull('device_token')->pluck('device_token')->all();
+          
+        $SERVER_API_KEY = 'XXXXXX';
+  
+        $data = [
+            "registration_ids" => $firebaseToken,
+            "notification" => [
+                "title" => $request->title,
+                "body" => $request->body,  
+            ]
+        ];
+        $dataString = json_encode($data);
+    
+        $headers = [
+            'Authorization: key=' . $SERVER_API_KEY,
+            'Content-Type: application/json',
+        ];
+    
+        $ch = curl_init();
+      
+        curl_setopt($ch, CURLOPT_URL, 'https://fcm.googleapis.com/fcm/send');
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $dataString);
+               
+        $response = curl_exec($ch);
+  
+        dd($response);
+    }
+}
+
+```
+
+
+
+### Replace resources/views/home.blade.php With Below Code 
+
+
+```
+
+@extends('layouts.app')
+   
+@section('content')
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <center>
+                <button id="btn-nft-enable" onclick="initFirebaseMessagingRegistration()" class="btn btn-danger btn-xs btn-flat">Allow for Notification</button>
+            </center>
+            <div class="card">
+                <div class="card-header">{{ __('Dashboard') }}</div>
+  
+                <div class="card-body">
+                    @if (session('status'))
+                        <div class="alert alert-success" role="alert">
+                            {{ session('status') }}
+                        </div>
+                    @endif
+  
+                    <form action="{{ route('send.notification') }}" method="POST">
+                        @csrf
+                        <div class="form-group">
+                            <label>Title</label>
+                            <input type="text" class="form-control" name="title">
+                        </div>
+                        <div class="form-group">
+                            <label>Body</label>
+                            <textarea class="form-control" name="body"></textarea>
+                          </div>
+                        <button type="submit" class="btn btn-primary">Send Notification</button>
+                    </form>
+  
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+  
+<script src="https://www.gstatic.com/firebasejs/7.23.0/firebase.js"></script>
+<script>
+  
+    var firebaseConfig = {
+        apiKey: "XXXX",
+        authDomain: "XXXX.firebaseapp.com",
+        databaseURL: "https://XXXX.firebaseio.com",
+        projectId: "XXXX",
+        storageBucket: "XXXX",
+        messagingSenderId: "XXXX",
+        appId: "XXXX",
+        measurementId: "XXX"
+    };
+      
+    firebase.initializeApp(firebaseConfig);
+    const messaging = firebase.messaging();
+  
+    function initFirebaseMessagingRegistration() {
+            messaging
+            .requestPermission()
+            .then(function () {
+                return messaging.getToken()
+            })
+            .then(function(token) {
+                console.log(token);
+   
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+  
+                $.ajax({
+                    url: '{{ route("save-token") }}',
+                    type: 'POST',
+                    data: {
+                        token: token
+                    },
+                    dataType: 'JSON',
+                    success: function (response) {
+                        alert('Token saved successfully.');
+                    },
+                    error: function (err) {
+                        console.log('User Chat Token Error'+ err);
+                    },
+                });
+  
+            }).catch(function (err) {
+                console.log('User Chat Token Error'+ err);
+            });
+     }  
+      
+    messaging.onMessage(function(payload) {
+        const noteTitle = payload.notification.title;
+        const noteOptions = {
+            body: payload.notification.body,
+            icon: payload.notification.icon,
+        };
+        new Notification(noteTitle, noteOptions);
+    });
+   
+</script>
+@endsection
+
+```
+
+
+### Create File in public/firebase-messaging-sw.js and Add Below Code
+
+``` 
+/*
+Give the service worker access to Firebase Messaging.
+Note that you can only use Firebase Messaging here, other Firebase libraries are not available in the service worker.
+*/
+importScripts('https://www.gstatic.com/firebasejs/7.23.0/firebase-app.js');
+importScripts('https://www.gstatic.com/firebasejs/7.23.0/firebase-messaging.js');
+   
+/*
+Initialize the Firebase app in the service worker by passing in the messagingSenderId.
+* New configuration for app@pulseservice.com
+*/
+firebase.initializeApp({
+        apiKey: "XXXX",
+        authDomain: "XXXX.firebaseapp.com",
+        databaseURL: "https://XXXX.firebaseio.com",
+        projectId: "XXXX",
+        storageBucket: "XXXX",
+        messagingSenderId: "XXXX",
+        appId: "XXXX",
+        measurementId: "XXX"
+    });
+  
+/*
+Retrieve an instance of Firebase Messaging so that it can handle background messages.
+*/
+const messaging = firebase.messaging();
+messaging.setBackgroundMessageHandler(function(payload) {
+    console.log(
+        "[firebase-messaging-sw.js] Received background message ",
+        payload,
+    );
+    /* Customize notification here */
+    const notificationTitle = "Background Message Title";
+    const notificationOptions = {
+        body: "Background Message body.",
+        icon: "/itwonders-web-logo.png",
+    };
+  
+    return self.registration.showNotification(
+        notificationTitle,
+        notificationOptions,
+    );
+});
+
+```
+
+
+## Run Server
+
+``` 
+php artisan serve
+```
+
