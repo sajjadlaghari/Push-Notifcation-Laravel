@@ -256,6 +256,10 @@ class HomeController extends Controller
 </div>
   
 <script src="https://www.gstatic.com/firebasejs/7.23.0/firebase.js"></script>
+<script
+  src="https://code.jquery.com/jquery-3.7.0.js"
+  integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM="
+  crossorigin="anonymous"></script>
 <script>
   
     var firebaseConfig = {
@@ -434,6 +438,34 @@ messaging.setBackgroundMessageHandler(function(payload) {
 ![image](https://github.com/sajjadlaghari/Push-Notifcation-Laravel/assets/68752819/32d5e442-5876-485d-b93d-56fd3fc807ee)
 
 
+### Click Project overview ans Click on Project Setting
+
+![image](https://github.com/sajjadlaghari/Push-Notifcation-Laravel/assets/68752819/6daa62bb-2164-48c5-8d48-d434ddf0773f)
+
+
+### Click Cloud Messaging
+
+![image](https://github.com/sajjadlaghari/Push-Notifcation-Laravel/assets/68752819/abd71746-6bbf-4b11-b02f-cb617d0be758)
+
+### Click three Donts
+
+![Untitled](https://github.com/sajjadlaghari/Push-Notifcation-Laravel/assets/68752819/5d070779-731d-4e38-af3a-39778b285cbc)
+
+### Enable Cloud Messaging
+
+![image](https://github.com/sajjadlaghari/Push-Notifcation-Laravel/assets/68752819/72a49e74-c1c0-4954-b621-7706a4e769b0)
+
+### Click Back Button and Go home and Refresh Browser and you will get below Server Key copy Token
+
+![Untitled](https://github.com/sajjadlaghari/Push-Notifcation-Laravel/assets/68752819/dd06633c-2be6-479b-b833-d83cdf3034c3)
+
+
+### Add in Server_Key Variable
+
+![image](https://github.com/sajjadlaghari/Push-Notifcation-Laravel/assets/68752819/0c9d887c-15ac-492a-a85a-64fb19e9d141)
+
+
+### Add in HomeController
 
 ## Run Server
 
