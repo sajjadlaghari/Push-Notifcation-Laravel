@@ -1,4 +1,3 @@
-![image](https://github.com/sajjadlaghari/Push-Notifcation-Laravel/assets/68752819/2ab949b1-6624-422e-aef5-1f1663f4d280)## Push Notification
 
 ``` Demo ```
 ### Push Notification sent
@@ -389,6 +388,9 @@ messaging.setBackgroundMessageHandler(function(payload) {
 
 
 ### Enter Project Name
+
+![image](https://github.com/sajjadlaghari/Push-Notifcation-Laravel/assets/68752819/2ab949b1-6624-422e-aef5-1f1663f4d280)## Push Notification
+
 
 
 ![image](https://github.com/sajjadlaghari/Push-Notifcation-Laravel/assets/68752819/2cddc0eb-7d14-4b4b-80d4-9f515869f576)
