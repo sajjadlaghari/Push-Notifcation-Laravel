@@ -426,9 +426,16 @@ messaging.setBackgroundMessageHandler(function(payload) {
 
 
 ### Replace Below code in Home.blade php file and in public firebase-messaging.js with Above Screenshoot code
- 
 
-![image](https://github.com/sajjadlaghari/Push-Notifcation-Laravel/assets/68752819/2dc6b6dc-6865-4afa-8955-caec5c93dfb9)
+``` home.blade.php ```
+ 
+![image](https://github.com/sajjadlaghari/Push-Notifcation-Laravel/assets/68752819/d122e7e5-0573-4cd6-b134-6ec85fcac1fc)
+
+
+``` firebase-messaging.js ```
+
+
+![image](https://github.com/sajjadlaghari/Push-Notifcation-Laravel/assets/68752819/29e97fe5-8c02-4adb-9a61-ffa14e6716e1)
 
 
 
