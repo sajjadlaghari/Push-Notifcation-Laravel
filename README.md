@@ -372,10 +372,6 @@ messaging.setBackgroundMessageHandler(function(payload) {
 ```
 
 
-## Run Server
-
-``` php artisan serve  ```
-
 
 
 ### Create Firebase Console if you don't have yet
@@ -435,7 +431,14 @@ messaging.setBackgroundMessageHandler(function(payload) {
 ``` firebase-messaging.js ```
 
 
-![image](https://github.com/sajjadlaghari/Push-Notifcation-Laravel/assets/68752819/29e97fe5-8c02-4adb-9a61-ffa14e6716e1)
+![image](https://github.com/sajjadlaghari/Push-Notifcation-Laravel/assets/68752819/32d5e442-5876-485d-b93d-56fd3fc807ee)
+
+
+
+## Run Server
+
+``` php artisan serve  ```
+
 
 
 
