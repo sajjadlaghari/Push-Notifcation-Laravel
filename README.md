@@ -467,7 +467,9 @@ messaging.setBackgroundMessageHandler(function(payload) {
 
 ### Add in HomeController
 
-## Run Server
+# Run Server
+
+
 
 ``` php artisan serve  ```
 
